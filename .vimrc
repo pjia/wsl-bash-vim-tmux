@@ -80,6 +80,15 @@ inoremap <left>  <nop>
 inoremap <right> <nop>
 
 inoremap ii <Esc>
+
+nnoremap <F2> :set nu! nu?<CR>
+
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+map Y y$
+
 "inoremap <Esc> <nop>
 
 "inoremap <expr> , ((pumvisible())?("\<C-n>"):(","))
@@ -98,6 +107,8 @@ let g:rehash256 = 1
 
 "let g:ag_working_path_mode="r"
 let g:ag_prg='ag -S --nocolor --nogroup --column --ignore node_modules --ignore "gen/*" --ignore "linux_test_harness/*"'
+" bind K to grep word under cursor
+nnoremap f :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 nmap <F7> :TlistToggle<CR>
 let Tlist_Ctags_Cmd = "/usr/bin/ctags"
