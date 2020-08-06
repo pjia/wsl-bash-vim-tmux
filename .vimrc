@@ -1,15 +1,19 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'morhetz/gruvbox'
-Plugin 'vim-airline/vim-airline'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'tell-k/vim-autopep8'
+call plug#begin('~/.vim/plugged')
+Plug 'rking/ag.vim'
+Plug 'mhinz/vim-signify'
+Plug 'vim-airline/vim-airline'
+Plug 'fholgado/minibufexpl.vim'
+Plug 'vim-scripts/taglist.vim'
+Plug 'vim-scripts/OmniCppComplete'
+Plug 'ycm-core/YouCompleteMe'
+Plug 'tell-k/vim-autopep8'
 
-call vundle#end()
+" Initialize plugin system
+call plug#end()
+
 "filetype plugin indent on
 
 set t_Co=256
@@ -52,6 +56,8 @@ let mapleader = ','
 let g:mapleader = ','
 let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 "let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
 
 let g:autopep8_disable_show_diff=1
@@ -79,9 +85,20 @@ inoremap <down>  <nop>
 inoremap <left>  <nop>
 inoremap <right> <nop>
 
-inoremap ii <Esc>
-
+inoremap jj <Esc>
 nnoremap <F2> :set nu! nu?<CR>
+
+nnoremap <Leader>2 :call ToggleSignColumn()<CR>
+" Toggle signcolumn
+func! ToggleSignColumn()
+    if !exists("b:signcolumn_on") || b:signcolumn_on
+        set signcolumn=no
+        let b:signcolumn_on=0
+    else
+        set signcolumn=yes
+        let b:signcolumn_on=1
+    endif
+endfunction
 
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -106,7 +123,7 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 
 "let g:ag_working_path_mode="r"
-let g:ag_prg='ag -S --nocolor --nogroup --column --ignore node_modules --ignore "gen/*" --ignore "linux_test_harness/*"'
+let g:ag_prg='ag -S --nocolor --nogroup --column --ignore node_modules --ignore "gen/*" --ignore "tags" --ignore "linux_test_harness/*"'
 " bind K to grep word under cursor
 nnoremap f :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
@@ -129,22 +146,6 @@ let Tlist_Use_Right_Window = 1
 "highlight SpellRare term=underline cterm=underline
 "highlight clear SpellLocal
 "highlight SpellLocal term=underline cterm=underline
-
-"cscope configuration
-"if has("cscope") && filereadable("/usr/bin/cscope")
-"   set csprg=/usr/bin/cscope
-"   set csto=0
-"   set cst
-"   set nocsverb
-"   " add any database in current directory
-"   if filereadable("cscope.out")
-"      cs add cscope.out
-"   " else add database pointed to by environment
-"   elseif $CSCOPE_DB != ""
-"      cs add $CSCOPE_DB
-"   endif
-"   set csverb
-"endif
 
 map <silent> <F5> :call CompileRunGcc() <CR><CR>
 func! CompileRunGcc()
@@ -215,4 +216,3 @@ if has("autocmd")
     autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\|NOTICE\|WARNING\|trb\)')
   endif
 endif
-set runtimepath^=~/.vim/bundle/ag
