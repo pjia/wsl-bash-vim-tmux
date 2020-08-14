@@ -87,6 +87,7 @@ inoremap <right> <nop>
 
 inoremap jj <Esc>
 nnoremap <F2> :set nu! nu?<CR>
+nmap <Leader>j :%!python -m json.tool<CR>
 
 nnoremap <Leader>2 :call ToggleSignColumn()<CR>
 " Toggle signcolumn
