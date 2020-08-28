@@ -148,3 +148,12 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+if [[ -z "$TMUX" ]] ;then
+    ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )"
+    if [[ -z "$ID" ]] ;then
+        tmux new-session
+    else
+        tmux attach-session -t "$ID"
+    fi
+fi
