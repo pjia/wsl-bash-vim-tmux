@@ -10,6 +10,8 @@ Plug 'vim-scripts/taglist.vim'
 Plug 'vim-scripts/OmniCppComplete'
 Plug 'ycm-core/YouCompleteMe'
 Plug 'tell-k/vim-autopep8'
+Plug 'skywind3000/asynctasks.vim'
+Plug 'skywind3000/asyncrun.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -149,26 +151,30 @@ let Tlist_Use_Right_Window = 1
 "highlight clear SpellLocal
 "highlight SpellLocal term=underline cterm=underline
 
-map <silent> <F5> :call CompileRunGcc() <CR><CR>
-func! CompileRunGcc()
-        silent exec "w"
-        if &filetype == 'c'
-                silent exec "!gcc % -o %<"
-                silent exec "!time ./%<"
-                silent exec ":q"
-        elseif &filetype == 'cpp'
-                silent exec "!g++ % -o %<"
-                silent exec "!time ./%<"
-                silent exec ":q"
-        elseif &filetype == 'sh'
-                silent :!time bash %
-                silent exec ":q"
-        elseif &filetype == 'python'
-                silent exec '!clear'
-                silent exec "!python3 %"
-                silent exec ":q"
-        endif
-endfunc
+let g:asyncrun_open = 6
+noremap <silent><f5> :AsyncTask file-run<cr>
+noremap <silent><f9> :AsyncTask file-build<cr>
+
+"map <silent> <F5> :call CompileRunGcc() <CR><CR>
+"func! CompileRunGcc()
+"        silent exec "w"
+"        if &filetype == 'c'
+"                silent exec "!gcc % -o %<"
+"                silent exec "!time ./%<"
+"                silent exec ":q"
+"        elseif &filetype == 'cpp'
+"                silent exec "!g++ % -o %<"
+"                silent exec "!time ./%<"
+"                silent exec ":q"
+"        elseif &filetype == 'sh'
+"                silent :!time bash %
+"                silent exec ":q"
+"        elseif &filetype == 'python'
+"                silent exec '!clear'
+"                silent exec "!python3 %"
+"                silent exec ":q"
+"        endif
+"endfunc
 
 if has("cscope") && filereadable("/usr/bin/cscope")
    set csprg=/usr/bin/cscope
