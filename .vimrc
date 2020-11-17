@@ -12,6 +12,7 @@ Plug 'ycm-core/YouCompleteMe'
 Plug 'tell-k/vim-autopep8'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
+Plug 'roxma/vim-paste-easy'
 
 " Initialize plugin system
 call plug#end()
@@ -31,7 +32,6 @@ set hlsearch
 set incsearch
 set list lcs=tab:\♠\ ,trail:•
 set showmatch
-set pastetoggle=<F4>
 set backspace=indent,eol,start
 set splitright
 set scrolloff=5
@@ -127,7 +127,7 @@ let g:molokai_original = 1
 let g:rehash256 = 1
 
 "let g:ag_working_path_mode="r"
-let g:ag_prg='ag -S --nocolor --nogroup --column --ignore node_modules --ignore "gen/*" --ignore "tags" --ignore "linux_test_harness/*"'
+let g:ag_prg='ag -S --nocolor --nogroup --column --ignore node_modules --ignore "gen/*" --ignore "tags" --ignore "linux_test*/*"'
 " bind K to grep word under cursor
 nnoremap f :Ag! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
