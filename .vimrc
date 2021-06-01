@@ -78,17 +78,18 @@ noremap L $
 "inoremap {}     {}
 "inoremap (  ()<Left>
 inoremap <C-e> <C-o>$
-nnoremap <up>    <nop>
-nnoremap <down>  <nop>
-nnoremap <left>  <nop>
-nnoremap <right> <nop>
-inoremap <up>    <nop>
-inoremap <down>  <nop>
-inoremap <left>  <nop>
-inoremap <right> <nop>
+"nnoremap <up>    <nop>
+"nnoremap <down>  <nop>
+"nnoremap <left>  <nop>
+"nnoremap <right> <nop>
+"inoremap <up>    <nop>
+"inoremap <down>  <nop>
+"inoremap <left>  <nop>
+"inoremap <right> <nop>
 
 inoremap jj <Esc>
-nnoremap <F2> :set nu! nu?<CR>
+nmap <Leader>w :set wrap! wrap?<CR>
+nmap <Leader>n :set nu! nu?<CR>
 nmap <Leader>j :%!python -m json.tool<CR>
 nmap <Leader>d :SignifyDiff<CR>
 

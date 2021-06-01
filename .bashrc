@@ -12,6 +12,11 @@ esac
 # See bash(1) for more options
 HISTCONTROL=ignoredups:erasedups
 
+#shopt -s histappend
+#shopt -s histreedit
+#shopt -s histverify
+#PROMPT_COMMAND="history -a;history -c;history -r; $PROMPT_COMMAND"
+
 # append to the history file, don't overwrite it
 # shopt -s histappend
 
@@ -79,7 +84,7 @@ if [ -x /usr/bin/dircolors ]; then
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
+    alias grep='grep --color=auto --binary-files=without-match --exclude-dir .git --exclude tags --exclude *.swp'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
@@ -136,7 +141,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-export PATH="$PATH:/local/tools"
+export PATH="$PATH:/tools/arm/gcc/gcc-arm-none-eabi-6_2-2016q4/bin"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
@@ -149,9 +154,9 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [[ -z "$TMUX" ]] ;then
-    ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )"
-    if [[ -n "$ID" ]] ;then
-        tmux attach-session -t "$ID"
-    fi
-fi
+#if [[ -z "$TMUX" ]] ;then
+#    ID="$( tmux ls | grep -vm1 attached | cut -d: -f1 )"
+#    if [[ -n "$ID" ]] ;then
+#        tmux attach-session -t "$ID"
+#    fi
+#fi
