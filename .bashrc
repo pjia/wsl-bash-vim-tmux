@@ -134,14 +134,14 @@ YELLOW='\[\033[0;33m\]'
 #export PS1="\$(tput setaf 6)\\w --> \$(git branch 2>/dev/null|grep -e ^*|tr -d \:*)\n\$(tput setaf 3)\u@\\H->\[\033[0m\]"
 #export PS1="\\[$(tput setaf 3)\\]\\u@\\h:\$(split_pwd)->\\[$(tput sgr0)\\]"
 #export PS1="\\[$(tput setaf 3)\\]\\u@\\h:\\w->\\[$(tput sgr0)\\]"
-export PS1="$YELLOW\u@\\h:\\w$CYAN\$(current_git_branch)$YELLOW->\\[$(tput sgr0)\\]"
+export PS1="$YELLOW\u@\\H:\\w$CYAN\$(current_git_branch)$YELLOW->\\[$(tput sgr0)\\]"
 #export PS1="\\[$(tput setaf 3)\\]\\u@\\h:\\[\$(split_pwd)\]\$(tput setaf 6)\$(git branch 2>/dev/null|grep -e ^*|tr -d \:*)\$(tput setaf 3)->\\[$(tput sgr0)\\]"
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-export PATH="$PATH:/tools/arm/gcc/gcc-arm-none-eabi-6_2-2016q4/bin"
+export PATH="$PATH:/tools/arm/gcc/gcc-arm-none-eabi-6_2-2016q4/bin:/usr/local/go/bin"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile

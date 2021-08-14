@@ -88,12 +88,21 @@ inoremap <C-e> <C-o>$
 "inoremap <right> <nop>
 
 inoremap jj <Esc>
+
 nmap <Leader>w :set wrap! wrap?<CR>
 nmap <Leader>n :set nu! nu?<CR>
-nmap <Leader>j :%!python -m json.tool<CR>
-nmap <Leader>d :SignifyDiff<CR>
+nmap <Leader>fj :%!python -m json.tool<CR>
+
+nnoremap <leader>d :SignifyDiff<cr>
+nnoremap <leader>p :SignifyHunkDiff<cr>
+nnoremap <leader>u :SignifyHunkUndo<cr>
+
+" hunk jumping
+nmap <leader>j <plug>(signify-next-hunk)
+nmap <leader>k <plug>(signify-prev-hunk)
 
 nnoremap <Leader>2 :call ToggleSignColumn()<CR>
+
 " Toggle signcolumn
 func! ToggleSignColumn()
     if !exists("b:signcolumn_on") || b:signcolumn_on
