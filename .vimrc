@@ -13,6 +13,8 @@ Plug 'tell-k/vim-autopep8'
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'roxma/vim-paste-easy'
+Plug 'scrooloose/nerdtree'
+Plug 'zivyangll/git-blame.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -102,6 +104,9 @@ nmap <leader>j <plug>(signify-next-hunk)
 nmap <leader>k <plug>(signify-prev-hunk)
 
 nnoremap <Leader>2 :call ToggleSignColumn()<CR>
+nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
+nnoremap <leader>t :NERDTree<cr>
+
 
 " Toggle signcolumn
 func! ToggleSignColumn()
