@@ -15,6 +15,8 @@ Plug 'skywind3000/asyncrun.vim'
 Plug 'roxma/vim-paste-easy'
 Plug 'scrooloose/nerdtree'
 Plug 'zivyangll/git-blame.vim'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'shougo/echodoc.vim'
 
 " Initialize plugin system
 call plug#end()
@@ -58,11 +60,27 @@ set autoindent
 
 let mapleader = ','
 let g:mapleader = ','
-let g:ycm_enable_diagnostic_signs = 0
-let g:ycm_enable_diagnostic_highlighting = 0
-let g:ycm_confirm_extra_conf = 0
-let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+"let g:ycm_enable_diagnostic_signs = 0
+"let g:ycm_enable_diagnostic_highlighting = 0
+"let g:ycm_confirm_extra_conf = 0
+"let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 "let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
+"
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+set completeopt=menu,menuone
+
+noremap <c-z> <NOP>
+
+let g:ycm_semantic_triggers =  {
+           \ 'c,cpp,python,java,go,erlang,perl': ['re!\w{2}'],
+           \ 'cs,lua,javascript': ['re!\w{2}'],
+           \ }
 
 let g:autopep8_disable_show_diff=1
 autocmd FileType python noremap <buffer> <F6> :call Autopep8()<CR>
@@ -229,6 +247,22 @@ let OmniCpp_MayCompleteScope = 1
 let OmniCpp_DefaultNamespaces = ["std","_GLIBCXX_STD"]
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest
+
+set tags=./.tags;,.tags
+let g:gutentags_project_root = ['.git']
+let g:gutentags_ctags_tagfile = '.tags'
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+
+set noshowmode
+let g:echodoc_enable_at_startup = 1
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
