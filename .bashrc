@@ -93,7 +93,7 @@ fi
 #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
+alias ll='ls -alh'
 alias la='ls -A'
 alias l='ls -CF'
 
@@ -141,7 +141,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-export PATH="$PATH:/tools/arm/gcc/gcc-arm-none-eabi-6_2-2016q4/bin:/usr/local/go/bin"
+export PATH="$PATH:/local/tools:/usr/local/go/bin"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
