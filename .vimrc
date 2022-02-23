@@ -17,6 +17,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'zivyangll/git-blame.vim'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'shougo/echodoc.vim'
+Plug 'dense-analysis/ale'
 
 " Initialize plugin system
 call plug#end()
@@ -60,8 +61,8 @@ set autoindent
 
 let mapleader = ','
 let g:mapleader = ','
-"let g:ycm_enable_diagnostic_signs = 0
-"let g:ycm_enable_diagnostic_highlighting = 0
+let g:ycm_enable_diagnostic_signs = 0
+let g:ycm_enable_diagnostic_highlighting = 0
 "let g:ycm_confirm_extra_conf = 0
 "let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 "let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
@@ -236,7 +237,6 @@ nmap <C-\>d : cs find d <C-R>=expand("<cword>")<CR><CR>
 
 "ominicpp configuration
 set nocp
-
 let OmniCpp_NamespaceSearch = 1
 let OmniCpp_GlobalScopeSearch = 1
 let OmniCpp_ShowAccess = 1
@@ -248,6 +248,7 @@ let OmniCpp_DefaultNamespaces = ["std","_GLIBCXX_STD"]
 au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
 set completeopt=menuone,menu,longest
 
+" Universal Ctags Configuration
 set tags=./.tags;,.tags
 let g:gutentags_project_root = ['.git']
 let g:gutentags_ctags_tagfile = '.tags'
@@ -261,8 +262,34 @@ if !isdirectory(s:vim_tags)
    silent! call mkdir(s:vim_tags, 'p')
 endif
 
+" echodoc configuration
 set noshowmode
 let g:echodoc_enable_at_startup = 1
+
+" ALE Configuration
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
+let g:ale_set_highlights = 0
+let g:ale_sign_error = '✗'
+let g:ale_sign_warning = '⚡'
+let g:ale_linters_explicit = 1
+let g:ale_completion_delay = 500
+let g:ale_echo_delay = 20
+let g:ale_lint_delay = 500
+let g:ale_echo_msg_format = '[%linter%] %code: %%s'
+let g:ale_lint_on_text_changed = 'normal'
+let g:ale_lint_on_insert_leave = 1
+let g:airline#extensions#ale#enabled = 1
+let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
+let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:ale_c_cppcheck_options = ''
+let g:ale_cpp_cppcheck_options = ''
+let g:ale_python_pylint_options = '--disable=C0111'
+let g:ale_linters = {
+            \'c':      ['clang'],
+            \'c++':    ['clang'],
+            \'python': ['pylint']
+            \}
 
 if has("autocmd")
   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
