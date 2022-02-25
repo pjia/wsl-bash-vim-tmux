@@ -63,10 +63,10 @@ let mapleader = ','
 let g:mapleader = ','
 let g:ycm_enable_diagnostic_signs = 0
 let g:ycm_enable_diagnostic_highlighting = 0
-"let g:ycm_confirm_extra_conf = 0
-"let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
 "let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
-"
+
 let g:ycm_add_preview_to_completeopt = 0
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_server_log_level = 'info'
@@ -288,7 +288,8 @@ let g:ale_python_pylint_options = '--disable=C0111'
 let g:ale_linters = {
             \'c':      ['clang'],
             \'c++':    ['clang'],
-            \'python': ['pylint']
+            \'python': ['pylint'],
+            \'go':     ['govet']
             \}
 
 if has("autocmd")
