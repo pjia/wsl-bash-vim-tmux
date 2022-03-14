@@ -94,10 +94,11 @@ set tm=500
 noremap H ^
 noremap L $
 
-"inoremap {<CR>  {<CR>}<Esc>O
-"inoremap {{     {
-"inoremap {}     {}
-"inoremap (  ()<Left>
+inoremap {  {}<ESC>i
+inoremap (  ()<ESC>i
+inoremap [  []<ESC>i
+inoremap "  ""<ESC>i
+
 inoremap <C-e> <C-o>$
 "nnoremap <up>    <nop>
 "nnoremap <down>  <nop>
@@ -126,6 +127,10 @@ nnoremap <Leader>2 :call ToggleSignColumn()<CR>
 nnoremap <Leader>s :<C-u>call gitblame#echo()<CR>
 nnoremap <leader>t :NERDTree<cr>
 
+
+" ALE jumping
+nmap <silent> <leader>aj :ALENext<cr>
+nmap <silent> <leader>ak :ALEPrevious<cr>
 
 " Toggle signcolumn
 func! ToggleSignColumn()
@@ -185,7 +190,7 @@ let Tlist_Use_Right_Window = 1
 "highlight clear SpellLocal
 "highlight SpellLocal term=underline cterm=underline
 
-let g:asyncrun_open = 6
+let g:asyncrun_open = 10
 noremap <silent><f5> :AsyncTask file-run<cr>
 noremap <silent><f9> :AsyncTask file-build<cr>
 
