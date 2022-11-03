@@ -141,8 +141,8 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-export PATH="$PATH:/local/tools:/usr/local/go/bin"
-export GOPATH=/local/works/go
+export GOPATH=$HOME/go
+export PATH="$PATH:/local/tools:/usr/local/go/bin:$GOROOT/bin:$GOPATH/bin"
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
