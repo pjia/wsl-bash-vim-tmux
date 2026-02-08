@@ -2,19 +2,46 @@
 
 A minimalist yet powerful development environment for WSL, optimized for **Go development** and **AI-assisted coding**. Heavy plugins and legacy C++ configurations have been removed in favor of speed and copy-paste efficiency.
 
-## 🚀 Tmux Usage
+---
 
-The Tmux configuration features a beautiful Molokai-style status line and is optimized for cross-window workflows.
+## 🚀 Tmux Configuration & Usage
+
+The Tmux setup focuses on a clean visual aesthetic (Molokai theme) and robust session management.
+
+### 📦 Plugins & Tools
+
+We use **TPM (Tmux Plugin Manager)** to manage the following core plugins:
+
+1.  **[tpm](https://github.com/tmux-plugins/tpm)**: The foundation for all tmux plugins. It handles automatic downloading and updating of your plugin suite.
+2.  **[tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)**: Essential for persistence. It allows you to save and restore your entire tmux environment (tabs, panes, paths) even after a system reboot or WSL restart.
+    - **Save**: `Prefix + Ctrl-s`
+    - **Restore**: `Prefix + Ctrl-r`
+
+### 🛠️ Installation
+
+To get the Tmux environment running:
+
+1.  **Clone TPM**:
+    ```bash
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    ```
+2.  **Link Config**:
+    ```bash
+    ln -sf ~/wsl-bash-vim-tmux/.tmux.conf ~/.tmux.conf
+    ```
+3.  **Install Plugins**:
+    Open Tmux and press **`Prefix + I`** (Capital I) to fetch and install the plugins listed in the config.
+
+### ⌨️ Key Bindings
 
 - **Prefix**: `Ctrl-a` (replaces the default `Ctrl-b`)
 - **🖱️ Mouse Toggle (`Prefix + m`)**:
-    - **ON**: Easy scrolling and pane resizing.
-    - **OFF**: Best for **native terminal selection and copy-pasting** to AI chat or other apps.
-- **💾 Session Management** (via `tmux-resurrect`):
-    - `Prefix + Ctrl-s`: Save current session.
-    - `Prefix + Ctrl-r`: Restore last saved session.
+    - **ON**: Standard mouse interaction (scrolling, selecting panes).
+    - **OFF**: **AI-Friendly Mode**. Use this for native terminal selection to easily copy code blocks to your clipboard without tmux interference.
 - **🔄 Reload Config**: `Prefix + r`
-- **Navigation**: VI mode keys enabled for scrollback (`Prefix + [`).
+- **Navigation**: VI mode keys enabled. Use `Prefix + [` to enter copy mode and navigate with `h/j/k/l`.
+
+---
 
 ## ✍️ Vim Essentials
 
@@ -37,18 +64,11 @@ Optimized for speed and system integration.
 
 ---
 
-## 🛠️ Installation
+## 🛠️ Global Setup
 
 1. Clone this repo to your home directory.
-2. Symbolic link the configs:
-   ```bash
-   ln -sf ~/wsl-bash-vim-tmux/.bashrc ~/.bashrc
-   ln -sf ~/wsl-bash-vim-tmux/.vimrc ~/.vimrc
-   ln -sf ~/wsl-bash-vim-tmux/.tmux.conf ~/.tmux.conf
-   ```
-3. Install plugins:
-   - **Vim**: Run `:PlugInstall` inside Vim.
-   - **Tmux**: Press `Prefix + I` (Capital i) inside Tmux to install TPM and plugins.
+2. Symbolic link the configs (`.bashrc`, `.vimrc`).
+3. Inside Vim, run `:PlugInstall` to install plugins.
 
 ## 🔗 WSL Integration (SSH Auto-start)
 
