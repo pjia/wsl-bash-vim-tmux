@@ -12,54 +12,64 @@ The Tmux setup focuses on a clean visual aesthetic (Molokai theme) and robust se
 
 We use **TPM (Tmux Plugin Manager)** to manage the following core plugins:
 
-1.  **[tpm](https://github.com/tmux-plugins/tpm)**: The foundation for all tmux plugins. It handles automatic downloading and updating of your plugin suite.
-2.  **[tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)**: Essential for persistence. It allows you to save and restore your entire tmux environment (tabs, panes, paths) even after a system reboot or WSL restart.
-    - **Save**: `Prefix + Ctrl-s`
-    - **Restore**: `Prefix + Ctrl-r`
+1.  **[tpm](https://github.com/tmux-plugins/tpm)**: The foundation for all tmux plugins.
+2.  **[tmux-resurrect](https://github.com/tmux-plugins/tmux-resurrect)**: Allows you to manually save and restore your entire tmux environment.
+3.  **[tmux-continuum](https://github.com/tmux-plugins/tmux-continuum)**: **Continuous saving** of tmux environment. It works with `tmux-resurrect`.
+    - **Auto-Save**: Automatically saves your session every 15 minutes (configurable).
+    - **Auto-Restore**: Automatically restores your last session when tmux starts.
+
+### 📂 Session & Window Management
+
+- **Sessions**: A collection of windows. Great for separating different projects.
+    - `Prefix + s`: List and switch between sessions.
+    - `Prefix + d`: Detach from the current session (it keeps running in the background).
+- **Windows**: Tabs within a session.
+    - `Prefix + c`: Create a new window.
+    - `Prefix + ,`: Rename the current window.
+    - `Prefix + n / p`: Move to the next/previous window.
+    - `Prefix + 0-9`: Switch directly to a window by number.
+- **Panes**: Split screens within a window.
+    - `Prefix + %`: Vertical split.
+    - `Prefix + "`: Horizontal split.
+    - `Prefix + o`: Cycle through panes.
+    - `Prefix + x`: Close current pane.
+
+### 💾 Persistence (Save & Restore)
+
+While `tmux-continuum` handles things in the background, you can still control it manually:
+- **Manual Save**: `Prefix + Ctrl-s` (Forces an immediate save).
+- **Manual Restore**: `Prefix + Ctrl-r` (Forces a restore from the last save).
 
 ### 🛠️ Installation
-
-To get the Tmux environment running:
 
 1.  **Clone TPM**:
     ```bash
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     ```
-2.  **Link Config**:
-    ```bash
-    ln -sf ~/wsl-bash-vim-tmux/.tmux.conf ~/.tmux.conf
-    ```
-3.  **Install Plugins**:
-    Open Tmux and press **`Prefix + I`** (Capital I) to fetch and install the plugins listed in the config.
+2.  **Install Plugins**:
+    Open Tmux and press **`Prefix + I`** (Capital I) to install `resurrect` and `continuum`.
 
 ### ⌨️ Key Bindings
 
-- **Prefix**: `Ctrl-a` (replaces the default `Ctrl-b`)
+- **Prefix**: `Ctrl-a`
 - **🖱️ Mouse Toggle (`Prefix + m`)**:
-    - **ON**: Standard mouse interaction (scrolling, selecting panes).
-    - **OFF**: **AI-Friendly Mode**. Use this for native terminal selection to easily copy code blocks to your clipboard without tmux interference.
+    - **ON**: Easy scrolling/resizing.
+    - **OFF**: **AI-Friendly Mode** (Native terminal selection for easy copy-pasting).
 - **🔄 Reload Config**: `Prefix + r`
-- **Navigation**: VI mode keys enabled. Use `Prefix + [` to enter copy mode and navigate with `h/j/k/l`.
 
 ---
 
 ## ✍️ Vim Essentials
 
-Optimized for speed and system integration.
-
-- **Clipboard**: `set clipboard+=unnamed` is enabled. Content `y`anked in Vim is immediately available in your system clipboard.
-- **Key Mappings**:
-    - `jj`: Quick `Esc` to exit insert mode.
-    - `H` / `L`: Jump to start/end of line.
-    - `Ctrl + h/j/k/l`: Quick pane navigation.
-    - `,t`: Toggle NERDTree (file explorer).
-    - `,d`: Show Git diff (Signify).
-- **Go Support**: Lightweight linting via `ALE` (using `govet`).
+- **Clipboard**: `set clipboard+=unnamed` (Yank in Vim -> Paste in System).
+- **jj**: Exit insert mode quickly.
+- **H / L**: Start/End of line.
+- **,t**: Toggle NERDTree.
+- **Go Support**: Lightweight linting via `ALE`.
 
 ## 🐚 Bash Features
 
-- **Prompt**: Shows current Git branch and clean path.
-- **Aliases**: `ll`, `la`, `l` for quick directory listing.
+- **Prompt**: Shows Git branch and clean path.
 - **Go Environment**: Pre-configured `GOPATH` and `PATH`.
 
 ---
@@ -72,6 +82,5 @@ Optimized for speed and system integration.
 
 ## 🔗 WSL Integration (SSH Auto-start)
 
-1. Put `startservice.vbs` in the Windows Startup folder:
-   `C:\Users\<username>\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup`
-2. Put `init.wsl` in `/etc/init.wsl` on Linux and configure your sudoers to allow running it.
+1. Put `startservice.vbs` in the Windows Startup folder.
+2. Put `init.wsl` in `/etc/init.wsl` on Linux.
