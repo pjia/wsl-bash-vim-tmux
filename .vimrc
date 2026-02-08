@@ -7,8 +7,6 @@ Plug 'mhinz/vim-signify'
 Plug 'scrooloose/nerdtree'
 Plug 'dense-analysis/ale'
 Plug 'roxma/vim-paste-easy'
-Plug 'skywind3000/asynctasks.vim'
-Plug 'skywind3000/asyncrun.vim'
 call plug#end()
 
 filetype plugin indent on
@@ -71,10 +69,6 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_sign_error = '✗'
 let g:ale_sign_warning = '⚡'
-
-" Tasks
-noremap <silent><f5> :AsyncTask file-run<cr>
-noremap <silent><f9> :AsyncTask file-build<cr>
 
 " Restore cursor position
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
