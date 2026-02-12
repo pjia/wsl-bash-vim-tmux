@@ -26,6 +26,7 @@ alias ll='ls -alh'
 alias la='ls -A'
 alias l='ls -CF'
 alias tmux="TERM=screen-256color-bce tmux"
+alias tworks="tmux attach-session -t works"
 
 # Git branch prompt
 current_git_branch() {
@@ -42,6 +43,11 @@ export PS1="$YELLOW\u@\\H:\\w$CYAN\$(current_git_branch)$YELLOW->$RESET "
 export GOPATH=$HOME/go
 export PATH="$PATH:/local/tools:/usr/local/go/bin:$GOPATH/bin"
 
+# Load API Keys
+if [ -f ~/.api_keys ]; then
+    source ~/.api_keys
+fi
+
 # Enable programmable completion
 if ! shopt -oq posix; then
   if [ -f /usr/share/bash-completion/bash_completion ]; then
@@ -50,3 +56,7 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
